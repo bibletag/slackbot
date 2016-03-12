@@ -1,23 +1,31 @@
 {
-  "name": "bibletag-slackbot",
+  "name": "bibletag",
   "version": "1.0.0",
-  "description": "A Slack integration to consume the bibletag API via slash command",
+  "description": "Search the bible by topic via slash command",
   "main": "slack.js",
-  "dependencies": {
-    "botkit": "0.0.8"
-  },
-  "devDependencies": {},
   "scripts": {
+    "start": "node slack.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bibletag/slackbot.git"
   },
+  "keywords": [
+    "bibletag"
+  ],
   "author": "Michael Hulet",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
     "url": "https://github.com/bibletag/slackbot/issues"
   },
-  "homepage": "https://github.com/bibletag/slackbot#readme"
+  "homepage": "https://github.com/bibletag/slackbot#readme",
+  "engines": {
+    "node": "5.8.0"
+  },
+  "dependencies": {
+    "botkit": "0.0.5",
+    "botkit-storage-mongo": "^1.0.2",
+    "mongodb": "^1.4.39"
+  }
 }
