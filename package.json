@@ -1,0 +1,24 @@
+{
+  "name": "bibletag-slackbot",
+  "version": "1.0.0",
+  "description": "A Slack integration to consume the bibletag API via slash command",
+  "main": "slack.js",
+  "dependencies": {
+    "botkit": "0.0.8",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bibletag/slackbot.git"
+  },
+  "author": "Michael Hulet",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/bibletag/slackbot/issues"
+  },
+  "homepage": "https://github.com/bibletag/slackbot#readme"
+}
