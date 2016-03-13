@@ -44,7 +44,7 @@ controller.on('slash_command', (slashCommand, message) => {
         slashCommand.replyPublicDelayed(message, "", () => {
           http.get("http://45.55.144.141:8080/tag/" + message.text.split(" ")[0], (response) => {
             if(response.statusCode === 204){
-              slashCommand.replyPublicDelayed(message, "Sorry, but I could not find any passages for that topic :cry:");
+              slashCommand.replyPublicDelayed(message, "Sorry, but I could not find any passages for " + message.text + " :cry:");
             }
             else{
               let responseString = "";
