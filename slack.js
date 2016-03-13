@@ -1,5 +1,8 @@
 "use strict";
-let Botkit = require('botkit');
+let Botkit = require("botkit");
+let RESTClient = require("node-rest-client").Client;
+let bibleAPI = new RESTClient();
+//let http = require("http");
 
 if(!process.env.BT_CLIENT_ID || !process.env.BT_CLIENT_SECRET || !process.env.BT_PORT || !process.env.BT_VERIFICATION_TOKEN){
     console.log('Error: Specify BT_CLIENT_ID, BT_CLIENT_SECRET, BT_VERIFICATION_TOKEN and BT_PORT in environment');
@@ -40,11 +43,25 @@ controller.on('slash_command', (slashCommand, message) => {
           slashCommand.replyPrivate(message, "I'll give you a bible passage for whatever you want. Type `/bibletag [your tags]`, and I'll give you a related passage.");
           return;
         }
-        let params = message.text.split(" ");
-        slashCommand.replyPublic(message, "Echo: ${message.text}");
+        slashCommand.replyPublicDelayed(message, () => {
+          //For a PUT request
+          // http.request({host: "45.55.144.141:8080", path: "/tag", method: "PUT", headers: {"Content-Type": "application/json"}}, (response) => {
+          //   let responseString = "";
+          //   response.on("data", (data) => {
+          //     responseString += data;
+          //   });
+          //   response.on("end", () => {
+          //     console.warn(responseString);
+          //     slashCommand.replyPublicDelayed(message, responseString);
+          //   });
+          // }).end(JSON.stringify({tag: message.text.split(" ")[0]}));
+        });
+        bibleAPI.get("http://45.55.144.141:8080/tag/" + message.text.split(" ")[0], (data, response) => {
+          slashCommand.replyPublic(message, data[0].verse_text);
+        });
       }
       break;
     default:
-      slashCommand.replyPublic(message, "I'm afraid I don't know how to ${message.command} yet.");
+      slashCommand.replyPublic(message, "I'm afraid I don't know how to " + message.command + "yet.");
   }
 });
