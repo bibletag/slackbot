@@ -43,8 +43,8 @@ controller.on('slash_command', (slashCommand, message) => {
           slashCommand.replyPrivate(message, "I'll give you a bible passage for whatever you want. Type `/bibletag [your tags]`, and I'll give you a related passage.");
           return;
         }
-        slashCommand.replyPublicDelayed(message, () => {
-          //For a PUT request
+        //For a PUT request
+        //slashCommand.replyPublicDelayed(message, () => {
           // http.request({host: "45.55.144.141:8080", path: "/tag", method: "PUT", headers: {"Content-Type": "application/json"}}, (response) => {
           //   let responseString = "";
           //   response.on("data", (data) => {
@@ -55,9 +55,11 @@ controller.on('slash_command', (slashCommand, message) => {
           //     slashCommand.replyPublicDelayed(message, responseString);
           //   });
           // }).end(JSON.stringify({tag: message.text.split(" ")[0]}));
-        });
-        bibleAPI.get("http://45.55.144.141:8080/tag/" + message.text.split(" ")[0], (data, response) => {
-          slashCommand.replyPublic(message, data[0].verse_text);
+        //});
+        slashCommand.replyPublicDelayed(message, "", () => {
+          bibleAPI.get("http://45.55.144.141:8080/tag/" + message.text.split(" ")[0], (data, response) => {
+            slashCommand.replyPublicDelayed(message, data[0].verse_text);
+          });
         });
       }
       break;
