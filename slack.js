@@ -52,7 +52,9 @@ controller.on('slash_command', (slashCommand, message) => {
                 responseString += data;
               });
               response.on("end", () => {
-                slashCommand.replyPublicDelayed(message, JSON.parse(responseString)[0].verse_text);
+                let verses = JSON.parse(responseString);
+                let verse = verses[Math.floor(Math.random() * verses.length)];
+                slashCommand.replyPublicDelayed(message, ">" + verse.verse_text + " -" + verse.book_name + " " + verse.chapter_id + ":" + verse.verse_id);
               });
               response.on("error", () => {
                 slashCommand.replyPublicDelayed(message, "Something went wrong...");
