@@ -33,4 +33,4 @@ node_modules
 .node_repl_history
 
 # Private data
-db_slackbutton_slash_command/*.json
+db_slackbutton_slash_command/**/*.json
