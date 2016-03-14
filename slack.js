@@ -2,7 +2,7 @@
 let Botkit = require("botkit");
 let http = require("http");
 
-if(!process.env.BT_CLIENT_ID || !process.env.BT_CLIENT_SECRET || !process.env.BT_PORT || !process.env.BT_VERIFICATION_TOKEN){
+if(!process.env.BT_CLIENT_ID || !process.env.BT_CLIENT_SECRET || !process.env.PORT || !process.env.BT_VERIFICATION_TOKEN){
     console.log('Error: Specify BT_CLIENT_ID, BT_CLIENT_SECRET, BT_VERIFICATION_TOKEN and BT_PORT in environment');
     process.exit(1);
 }
@@ -18,7 +18,7 @@ else{
 
 let controller = Botkit.slackbot(config).configureSlackApp({clientId: process.env.BT_CLIENT_ID, clientSecret: process.env.BT_CLIENT_SECRET, scopes: ['commands']});
 
-controller.setupWebserver(process.env.BT_PORT, (error, webserver) => {
+controller.setupWebserver(process.env.PORT, (error, webserver) => {
   controller.createWebhookEndpoints(controller.webserver);
   controller.createOauthEndpoints(controller.webserver, (error, req, res) => {
     if(error){
