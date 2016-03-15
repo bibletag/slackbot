@@ -48,7 +48,7 @@ controller.on('slash_command', (slashCommand, message) => {
         else{
           slashCommand.replyPublic(message, "", () => {
             //TODO: Change to bibletag.xyz:8080 on next iteration
-            HTTP.get("http://45.55.144.141:8080/tag/" + lc.split(" ")[0], (response) => {
+            HTTP.get("http://bibletag.xyz:8080/tag/" + lc.split(" ")[0], (response) => {
               if(response.statusCode === 204){
                 slashCommand.replyPublicDelayed(message, "Sorry, but I could not find any passages for " + message.text + " :cry:");
               }
