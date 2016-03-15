@@ -1,4 +1,3 @@
-"use strict";
 const Botkit = require("botkit");
 const HTTP = require("http");
 
@@ -33,7 +32,7 @@ controller.setupWebserver(process.env.PORT, (error, webserver) => {
 controller.on('slash_command', (slashCommand, message) => {
   switch(message.command){
     case "/bibletag":
-      const lc = message.text.toLowerCase()
+      const lc = message.text.toLowerCase();
       if(message.token !== process.env.BT_VERIFICATION_TOKEN){
         return;
       }
@@ -47,7 +46,6 @@ controller.on('slash_command', (slashCommand, message) => {
         }
         else{
           slashCommand.replyPublic(message, "", () => {
-            //TODO: Change to bibletag.xyz:8080 on next iteration
             HTTP.get("http://bibletag.xyz:8080/tag/" + lc.split(" ")[0], (response) => {
               if(response.statusCode === 204){
                 slashCommand.replyPublicDelayed(message, "Sorry, but I could not find any passages for " + message.text + " :cry:");
